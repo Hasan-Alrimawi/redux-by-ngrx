@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs';
 import { ProductsListService } from './products-list/service/products-list.service';
@@ -32,7 +32,7 @@ export class AppComponent {
     this.appStore.dispatch(removeProduct({ productId }));
   }
 
-  constructor(private productsService: ProductsListService, private appStore: Store) { }
+  constructor(@Inject(ProductsListService) private productsService: ProductsListService,@Inject(Store) private appStore: Store) { }
 }
 
 
