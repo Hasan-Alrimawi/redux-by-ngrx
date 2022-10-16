@@ -1,0 +1,9 @@
+<h1>Selected Products</h1>
+<ul>
+    <li *ngFor="let product of selectedProducts; trackBy: trackingById">
+        <p>Product Name: {{product.title}}</p>
+        <p>Price: {{product.price}}</p>
+        <button (click)="remove.emit(product.id)">Remove</button>
+        <br>
+    </li>
+</ul>
