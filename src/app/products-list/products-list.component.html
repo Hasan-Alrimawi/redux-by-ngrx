@@ -3,7 +3,7 @@
 </h1>
 
 <ul>
-    <li *ngfor="let product of productsList">
+    <li *ngFor="let product of productsList">
         <p>Product Name: {{product.title}}</p>
         <p>Price: {{product.price}}</p>
         <button (click)="add.emit(product.id)">Add</button>

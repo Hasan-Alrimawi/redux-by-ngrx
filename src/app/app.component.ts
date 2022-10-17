@@ -16,11 +16,9 @@ export class AppComponent {
   title = 'redux-test';
   
   ngOnInit() {
-    console.log("bef");
     this.productsService
       .fetchData()
       .subscribe((products) => this.appStore.dispatch(getProductsList({ products })));
-    console.log("aft");
   }
   productsListRetrieved$ = this.appStore.select(selectProductsList);
   selectedProductsRetrieved$ = (this.appStore.select(selectProducts)) as Observable<product[]>;
@@ -32,7 +30,7 @@ export class AppComponent {
     this.appStore.dispatch(removeProduct({ productId }));
   }
 
-  constructor(@Inject(ProductsListService) private productsService: ProductsListService,@Inject(Store) private appStore: Store) { }
+  constructor(private productsService: ProductsListService, private appStore: Store) { }
 }
 
 

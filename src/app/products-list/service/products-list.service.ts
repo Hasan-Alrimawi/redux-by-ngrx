@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { data, product } from '../../app.component';
 import { map, Observable } from 'rxjs';
 @Injectable({
@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
 
 export class ProductsListService {
 
-  constructor(@Inject(HttpClient) private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient) { }
 
   fetchData() {
     let products: Observable<Array<product>>;
