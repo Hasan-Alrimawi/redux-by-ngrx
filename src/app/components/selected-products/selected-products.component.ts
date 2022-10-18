@@ -1,6 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { product } from '../app.component';
+import { product } from '../../app.component';
 
 @Component({
   selector: 'app-selected-products',

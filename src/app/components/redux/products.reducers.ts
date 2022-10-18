@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store'
-import { product } from '../app.component';
+import { product } from '../../app.component';
 import { addProduct, getProductsList, removeProduct } from './products.actions';
 
 export const initialState: ReadonlyArray<product> = [];

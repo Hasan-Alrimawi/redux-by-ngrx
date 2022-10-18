@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs';
-import { ProductsListService } from './products-list/service/products-list.service';
-import { addProduct, getProductsList, removeProduct } from './redux/products.actions';
-import { selectProducts, selectProductsList } from './redux/products.selectors';
+import { ProductsListService } from './services/product-list/products-list.service';
+import { addProduct, getProductsList, removeProduct } from './components/redux/products.actions';
+import { selectProducts, selectProductsList } from './components/redux/products.selectors';
 
 @Component({
   selector: 'app-root',
