@@ -3,9 +3,11 @@
 </h1>
 
 <ul>
-    <li *ngFor="let product of productsList">
+    <li *ngFor="let product of productsList$ | async">
+        <!-- The async pipe actually subscribes to the observable 'productsList$' and makes 
+            updates when new values are added or changed -->
         <p>Product Name: {{product.title}}</p>
         <p>Price: {{product.price}}</p>
-        <button (click)="add.emit(product.id)">Add</button>
+        <button (click)="addProductToList(product.id)">Add</button>
     </li>
 </ul>

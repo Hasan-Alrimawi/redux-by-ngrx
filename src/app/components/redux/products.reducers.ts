@@ -2,8 +2,8 @@ import { createReducer, on } from '@ngrx/store'
 import { product } from '../../app.component';
 import { addProduct, getProductsList, removeProduct } from './products.actions';
 
-export const initialState: ReadonlyArray<product> = [];
-export const primaryState: ReadonlyArray<number> = [];
+export const initialState: ReadonlyArray<product> = []; //initial state that represents the 'productsList' slice of the store.
+export const primaryState: ReadonlyArray<number> = []; //primary state that represents the 'selectedProducts' slice of the store.
 
 export const productsListReducer = createReducer(initialState,
     on(getProductsList, (state, { products }) => products));

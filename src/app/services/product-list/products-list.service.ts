@@ -13,7 +13,6 @@ export class ProductsListService {
   fetchData() {
     let products: Observable<Array<product>>;
 
-
     return products = this.httpService.get<data>('https://dummyjson.com/products').pipe(map((retrieved) => {
       return retrieved.products || [];
     }))

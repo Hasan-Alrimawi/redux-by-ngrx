@@ -1,6 +1,9 @@
-import { outputAst } from '@angular/compiler';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { product } from '../../app.component';
+import { Store } from '@ngrx/store';
+import { selectProducts } from '../redux/products.selectors';
+import { Observable } from 'rxjs';
+import { removeProduct } from '../redux/products.actions';
 
 @Component({
   selector: 'app-selected-products',
@@ -9,12 +12,15 @@ import { product } from '../../app.component';
 })
 export class SelectedProductsComponent {
 
-  @Input()
-  selectedProducts: ReadonlyArray<product> | null = [];
-  @Output()
-  remove:EventEmitter<number> = new EventEmitter();
+  constructor(private appStore: Store) { }
 
-  trackingById(index:number, element: product){
-    return element.id;
+  selectedProducts$: Observable<readonly product[]> = (this.appStore.select(selectProducts)) as Observable<readonly product[]>;
+
+  trackingById(index: number, element: product) {
+    return element.id; //Id can be used as a unique identifier for the product to let angular track only changed values.
+  }
+
+  removeProductFromList(productId: number) {
+    this.appStore.dispatch(removeProduct({ productId }));
   }
 }

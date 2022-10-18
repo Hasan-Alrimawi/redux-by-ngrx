@@ -1,9 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs';
 import { ProductsListService } from './services/product-list/products-list.service';
-import { addProduct, getProductsList, removeProduct } from './components/redux/products.actions';
-import { selectProducts, selectProductsList } from './components/redux/products.selectors';
+import { getProductsList, removeProduct } from './components/redux/products.actions';
 
 @Component({
   selector: 'app-root',
@@ -12,25 +10,22 @@ import { selectProducts, selectProductsList } from './components/redux/products.
 })
 
 export class AppComponent {
-  
+
   title = 'redux-test';
-  
+
+  constructor(private productsService: ProductsListService, private appStore: Store) { }
+
+  //On initialization to get the data needed and put it in the store at the startup. 
   ngOnInit() {
     this.productsService
       .fetchData()
       .subscribe((products) => this.appStore.dispatch(getProductsList({ products })));
-  }
-  productsListRetrieved$ = this.appStore.select(selectProductsList);
-  selectedProductsRetrieved$ = (this.appStore.select(selectProducts)) as Observable<product[]>;
-  addProductToList(productId: number) {
-    this.appStore.dispatch(addProduct({ productId }));
   }
 
   removeProductFromList(productId: number) {
     this.appStore.dispatch(removeProduct({ productId }));
   }
 
-  constructor(private productsService: ProductsListService, private appStore: Store) { }
 }
 
 

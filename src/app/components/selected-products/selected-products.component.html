@@ -1,9 +1,11 @@
 <h1>Selected Products</h1>
 <ul>
-    <li *ngFor="let product of selectedProducts; trackBy: trackingById">
+    <li *ngFor="let product of selectedProducts$ | async; trackBy: trackingById">
+        <!-- trackBy directive permits angular to track 
+        which components changed, in order to update the changed ones only  -->
         <p>Product Name: {{product.title}}</p>
         <p>Price: {{product.price}}</p>
-        <button (click)="remove.emit(product.id)">Remove</button>
+        <button (click)="removeProductFromList(product.id)">Remove</button>
         <br>
     </li>
 </ul>
